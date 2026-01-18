@@ -305,13 +305,78 @@ cd android
 Output: `android/app/build/outputs/apk/debug/app-debug.apk`
 
 ### Release Build (For Publishing)
-1. Create keystore (first time only)
-2. Configure signing in `android/app/build.gradle`
-3. Build release APK:
-   ```bash
-   cd android
-   ./gradlew assembleRelease
-   ```
+
+Release APKs must be signed with a keystore. Follow these steps:
+
+#### Step 1: Create Keystore (First Time Only)
+
+```bash
+cd /path/to/my-capacitor-app
+keytool -genkey -v -keystore my-release-key.keystore \
+  -alias my-key-alias \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 10000
+```
+
+You'll be prompted for:
+- **Keystore password** (at least 6 characters) - Remember this!
+- **Key password** (can be same as keystore password)
+- Your name, organization, etc. (can use defaults)
+
+**Important**: Save the passwords securely - you'll need them for all future updates!
+
+#### Step 2: Configure Signing in build.gradle
+
+Edit `android/app/build.gradle` and add the signing configuration:
+
+```gradle
+android {
+    // ... existing config ...
+
+    signingConfigs {
+        release {
+            storeFile file('../../my-release-key.keystore')
+            storePassword 'your-keystore-password'
+            keyAlias 'my-key-alias'
+            keyPassword 'your-key-password'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+```
+
+Replace `'your-keystore-password'` and `'your-key-password'` with your actual passwords.
+
+#### Step 3: Build Signed Release APK
+
+```bash
+cd android
+./gradlew assembleRelease
+```
+
+Output: `android/app/build/outputs/apk/release/app-release.apk`
+
+#### Step 4: Install Release APK
+
+**Important**: Release and debug APKs have different signatures. Uninstall debug version first:
+
+```bash
+# Uninstall debug version
+adb uninstall com.example.mycapacitorapp
+
+# Install release version
+adb install android/app/build/outputs/apk/release/app-release.apk
+```
+
+Or transfer the APK to your device and install manually.
 
 ## File Format Specifications
 
