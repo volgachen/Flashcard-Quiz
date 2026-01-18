@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questions>
+  <item>
+    <question>生日是哪天</question>
+    <answer>The birthday is 21.11</answer>
+  </item>
+  <item>
+    <question>What is the capital of France?</question>
+    <answer>Paris</answer>
+  </item>
+  <item>
+    <question>What is 2 + 2?</question>
+    <answer>4</answer>
+  </item>
+  <item>
+    <question>What color is the sky?</question>
+    <answer>Blue</answer>
+  </item>
+  <item>
+    <question>How many days are in a week?</question>
+    <answer>7 days</answer>
+  </item>
+</questions>

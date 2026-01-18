@@ -1,0 +1,361 @@
+/* Base Styles */
+html {
+    overflow-x: hidden;
+    width: 100%;
+    position: fixed;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Screen Management */
+.screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+/* Welcome Screen */
+.welcome-container {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 400px;
+}
+
+.welcome-container h1 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+.welcome-description {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.file-info {
+    color: #999;
+    font-size: 0.9em;
+    margin-top: 20px;
+}
+
+/* Quiz Screen Layout */
+#quizScreen {
+    justify-content: flex-start;
+    padding: 0;
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+    text-align: center;
+}
+
+#progressText {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 1em;
+}
+
+/* Card Container */
+.card-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 80px 20px 100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Flashcard */
+.flashcard {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    padding: 40px;
+    min-height: 400px;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flashcard:active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.flashcard h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.flashcard p {
+    color: #333;
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.question-side,
+.answer-side {
+    transition: opacity 0.3s ease;
+}
+
+.answer-side {
+    opacity: 1;
+}
+
+.answer-side.hidden {
+    display: none;
+}
+
+.tap-hint {
+    color: #999;
+    font-size: 0.9em !important;
+    margin-top: 30px !important;
+    font-style: italic;
+}
+
+.swipe-hint {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9em;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #667eea;
+    color: #667eea;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+    padding: 0;
+    line-height: 1;
+}
+
+.nav-arrow:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.nav-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.nav-arrow:disabled:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #667eea;
+    transform: translateY(-50%) scale(1);
+}
+
+.nav-arrow-left {
+    left: -70px;
+}
+
+.nav-arrow-right {
+    right: -70px;
+}
+
+/* Controls */
+.controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    z-index: 100;
+}
+
+/* Buttons */
+button {
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s, opacity 0.2s;
+    min-height: 44px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.primary-button {
+    background: #667eea;
+    color: white;
+}
+
+.primary-button:hover {
+    opacity: 0.9;
+}
+
+.secondary-button {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.secondary-button:hover {
+    opacity: 0.9;
+}
+
+/* Swipe Animations */
+@keyframes swipeLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-30px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes swipeRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(30px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.flashcard.swipe-left {
+    animation: swipeLeft 0.3s ease;
+}
+
+.flashcard.swipe-right {
+    animation: swipeRight 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .welcome-container {
+        padding: 40px 30px;
+        max-width: 90%;
+    }
+
+    .welcome-container h1 {
+        font-size: 2em;
+    }
+
+    .flashcard {
+        min-height: 300px;
+        padding: 30px 20px;
+    }
+
+    .flashcard h2 {
+        font-size: 1.3em;
+    }
+
+    .flashcard p {
+        font-size: 1.1em;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .card-container {
+        padding: 70px 15px 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flashcard {
+        min-height: 250px;
+        padding: 25px 15px;
+    }
+
+    .flashcard h2 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .flashcard p {
+        font-size: 1em;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}

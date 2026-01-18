@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flashcard Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen">
+        <div class="welcome-container">
+            <h1>📚 Flashcard Quiz</h1>
+            <p class="welcome-description">Load your question files and start learning!</p>
+            <button id="selectFileBtn" class="primary-button">Select Question File</button>
+            <p class="file-info">Supports XML and TXT formats</p>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quizScreen" class="screen hidden">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <span id="progressText">Question 1 of 10</span>
+        </div>
+
+        <!-- Flashcard Container -->
+        <div class="card-container">
+            <div id="flashcard" class="flashcard">
+                <div class="question-side">
+                    <h2>Question</h2>
+                    <p id="questionText"></p>
+                    <p class="tap-hint">Tap to reveal answer</p>
+                </div>
+                <div class="answer-side hidden">
+                    <h2>Answer</h2>
+                    <p id="answerText"></p>
+                </div>
+            </div>
+            <p class="swipe-hint">← Swipe to navigate →</p>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="loadFileBtn" class="secondary-button">Load New File</button>
+            <button id="shuffleBtn" class="primary-button">Shuffle & Restart</button>
+        </div>
+    </div>
+
+    <!-- Hidden File Input -->
+    <input type="file" id="fileInput" accept=".xml,.txt" style="display: none;">
+
+    <script src="app.js"></script>
+</body>
+</html>
