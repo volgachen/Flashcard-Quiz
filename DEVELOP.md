@@ -124,6 +124,36 @@ sdkmanager --list | head -20
 adb version
 ```
 
+### Alternative: Using local.properties (Simpler)
+
+Instead of setting system-wide environment variables, you can configure the Android SDK path in a project-specific file. **This is what's actually used in this project.**
+
+#### Create local.properties
+
+Create or edit `android/local.properties`:
+
+```properties
+sdk.dir=/path/to/your/android-sdk
+```
+
+For example:
+```properties
+sdk.dir=/home/username/Android/Sdk
+# or
+sdk.dir=/mnt/sda/chenzhiyang/Others/android-sdk
+```
+
+#### Benefits
+- **Project-specific**: Each project can use different SDK versions
+- **Not committed**: File is in .gitignore, so each developer configures their own path
+- **Simpler**: No need to modify shell configuration files
+- **Gradle reads it automatically**: Works seamlessly with Android builds
+
+#### Note
+- This file is automatically created by Android Studio
+- If building from command line, create it manually
+- Java is still found through system PATH
+
 ## Project Structure
 
 ```
