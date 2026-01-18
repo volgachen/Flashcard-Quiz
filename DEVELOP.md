@@ -28,6 +28,102 @@ npm --version
 java -version
 ```
 
+## Environment Setup (First Time Only)
+
+If you're setting up the development environment from scratch, follow these steps:
+
+### 1. Install OpenJDK 21
+
+#### Ubuntu/Debian
+```bash
+sudo apt update
+sudo apt install openjdk-21-jdk
+```
+
+#### macOS (using Homebrew)
+```bash
+brew install openjdk@21
+```
+
+#### Verify Installation
+```bash
+java -version
+# Should show: openjdk version "21.x.x"
+```
+
+### 2. Download Android Command Line Tools
+
+#### Download
+Visit: https://developer.android.com/studio#command-tools
+
+Or download directly:
+```bash
+# Linux
+wget https://dl.google.com/android/repository/commandlinetools-linux-latest.zip
+
+# macOS
+wget https://dl.google.com/android/repository/commandlinetools-mac-latest.zip
+```
+
+#### Extract and Setup
+```bash
+# Create Android SDK directory
+mkdir -p ~/Android/Sdk/cmdline-tools
+
+# Extract (replace with your downloaded file)
+unzip commandlinetools-linux-latest.zip -d ~/Android/Sdk/cmdline-tools
+
+# Rename to 'latest'
+mv ~/Android/Sdk/cmdline-tools/cmdline-tools ~/Android/Sdk/cmdline-tools/latest
+```
+
+### 3. Set Environment Variables
+
+Add these to your `~/.bashrc` or `~/.zshrc`:
+
+```bash
+# Java
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64  # Adjust path for your system
+export PATH=$JAVA_HOME/bin:$PATH
+
+# Android
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/build-tools/34.0.0:$PATH  # Adjust version as needed
+```
+
+Reload your shell:
+```bash
+source ~/.bashrc  # or source ~/.zshrc
+```
+
+### 4. Install Android SDK Packages
+
+```bash
+# Accept licenses
+sdkmanager --licenses
+
+# Install required packages
+sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
+# Install additional tools (optional)
+sdkmanager "emulator" "system-images;android-34;google_apis;x86_64"
+```
+
+### 5. Verify Setup
+
+```bash
+# Check Java
+java -version
+
+# Check Android SDK
+sdkmanager --list | head -20
+
+# Check adb (Android Debug Bridge)
+adb version
+```
+
 ## Project Structure
 
 ```
