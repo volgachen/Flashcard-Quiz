@@ -83,7 +83,9 @@ function parseXML(xmlString) {
 
 function parseTXT(txtString) {
     try {
-        const blocks = txtString.split('\n\n').filter(block => block.trim());
+        // Normalize line endings (handle both \r\n and \n)
+        const normalized = txtString.replace(/\r\n/g, '\n');
+        const blocks = normalized.split('\n\n').filter(block => block.trim());
         const questions = [];
 
         blocks.forEach(block => {
